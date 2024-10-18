@@ -26,10 +26,12 @@
 
 ## Installation
 
-To set up the environment for training, run the following command to create a new conda environment with Python 3.9:
+To set up the environment for training, run the following command to create a new conda environment. We recommend using Python 3.9:
+
 ```bash
 conda create -n reason  python=3.9
 ```
+
 Activate the environment before proceeding:
 ```bash
 conda activate reason
@@ -81,8 +83,6 @@ The following table contains links to all the models and weights we used in our 
 | xfeat-dino-G.zip | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/xfeat-dino-G.zip) | 94.3 MB |
 | xfeat-dino_B.zip | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/xfeat-dino_B.zip) | 92.3 MB |
 | xfeat-dino_L.zip | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/xfeat-dino_L.zip) | 92.6 MB |
-
-
 
 # Training 
 
