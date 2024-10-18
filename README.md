@@ -69,20 +69,20 @@ The following table contains links to all the models and weights we used in our 
 
 | Descriptor | Pre-trained weights | Size |
 | --- | --- | --- |
-| xfeat.zip | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/xfeat.zip) | 91.6 MB |
-| superpoint.zip | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/superpoint.zip) | 91 MB |
-| alike.zip | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/alike.zip) | 92.1 MB |
-| aliked.zip | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/aliked.zip) | 91.9 MB |
-| dedode_B.zip | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/dedode_B.zip) | 92.2 MB |
-| dedode_G.zip | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/dedode_G.zip) | 94.1 MB |
-| xfeat-12_layers-dino_G.zip | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/xfeat-12_layers-dino_G.zip) | 221 MB |
-| xfeat-12_layers.zip | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/xfeat-12_layers.zip) | 219 MB |
-| xfeat-3_layers.zip | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/xfeat-3_layers.zip) | 57.1 MB |
-| xfeat-7_layers.zip | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/xfeat-7_layers.zip) | 132 MB |
-| xfeat-9_layers.zip | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/xfeat-9_layers.zip) | 167 MB |
-| xfeat-dino-G.zip | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/xfeat-dino-G.zip) | 94.3 MB |
-| xfeat-dino_B.zip | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/xfeat-dino_B.zip) | 92.3 MB |
-| xfeat-dino_L.zip | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/xfeat-dino_L.zip) | 92.6 MB |
+| xfeat | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/xfeat.zip) | 91.6 MB |
+| superpoint | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/superpoint.zip) | 91 MB |
+| alike | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/alike.zip) | 92.1 MB |
+| aliked | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/aliked.zip) | 91.9 MB |
+| dedode_B | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/dedode_B.zip) | 92.2 MB |
+| dedode_G | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/dedode_G.zip) | 94.1 MB |
+| xfeat-12_layers-dino_G | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/xfeat-12_layers-dino_G.zip) | 221 MB |
+| xfeat-12_layers | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/xfeat-12_layers.zip) | 219 MB |
+| xfeat-3_layers | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/xfeat-3_layers.zip) | 57.1 MB |
+| xfeat-7_layers | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/xfeat-7_layers.zip) | 132 MB |
+| xfeat-9_layers | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/xfeat-9_layers.zip) | 167 MB |
+| xfeat-dino-G | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/xfeat-dino-G.zip) | 94.3 MB |
+| xfeat-dino_B | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/xfeat-dino_B.zip) | 92.3 MB |
+| xfeat-dino_L | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/xfeat-dino_L.zip) | 92.6 MB |
 
 # Training 
 
