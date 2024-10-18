@@ -1,28 +1,28 @@
 <p align="center">
-  <h1 align="center"> <ins>Descriptor Reasoning</ins><br> Leveraging Semantic Cues from Foundation Vision Models <br> for Enhanced Local Feature Correspondence <br>⭐ACCV 2024⭐</h1>
+  <h1 align="center"> Leveraging Semantic Cues from Foundation Vision Models <br> for Enhanced Local Feature Correspondence <br>⭐ACCV 2024⭐</h1>
   <p align="center">
-    <a href="https://scholar.google.com/citations?">Felipe Cadar</a>
+    <a href="https://eucadar.com">Felipe Cadar</a>
     ·
-    <a href="https://scholar.google.com/citations?">Guilherme Potje</a>
+    <a href="https://guipotje.github.io">Guilherme Potje</a>
     ·
-    <a href="https://scholar.google.com/citations?">Renato Mastins</a>
+    <a href="https://renatojmsdh.github.io">Renato Mastins</a>
     ·
-    <a href="https://scholar.google.com/citations?">Cédric Demonceaux</a>
+    <a href="https://sites.google.com/view/cedricdemonceaux/home">Cédric Demonceaux</a>
     ·
-    <a href="https://scholar.google.com/citations?">Erickson R Nascimento</a>
+    <a href="https://homepages.dcc.ufmg.br/~erickson/">Erickson R Nascimento</a>
   </p>
   <h2 align="center"><p>
-    <!-- <a href="https://arxiv.org/abs/2305.15404" align="center">Paper</a> -->
-    <!-- <a href="https://parskatt.github.io/RoMa" align="center">Project Page</a> -->
+    <a href="https://arxiv.org/abs/2410.09533" align="center">Paper</a>
+    <!-- <a href="https://www.verlab.dcc.ufmg.br/descriptors/reasoning_accv24" align="center">Project Page (Soon)</a> -->
   </p></h2>
   <div align="center"></div>
 </p>
 <br/>
-<!-- <p align="center">
-    <img src="https://github.com/Parskatt/RoMa/assets/22053118/15d8fea7-aa6d-479f-8a93-350d950d006b" alt="example" width=80%>
+<p align="center">
+    <img src="assets/teaser.png" alt="example" width=80%>
     <br>
-    <em>RoMa is the robust dense feature matcher capable of estimating pixel-dense warps and reliable certainties for almost any image pair.</em>
-</p> -->
+    <em>Leveraging semantic information for improving visual correspondence.</em>
+</p>
 
 ## Installation
 
@@ -42,11 +42,53 @@ pip install -e .
 
 # Inference
 
+```python
+from reasoning.features.desc_reasoning import load_reasoning_from_checkpoint, Reasoning
+
+# load the model with pre-trained weights
+semantic_reasoning = load_reasoning_from_checkpoint('models/xfeat/')
+# load it into the auxiliary class
+reasoning_model = Reasoning(semantic_reasoning['model'])
+
+# match two images
+match_response = reasoning_model.match({
+    'image0': image0, # BxCxHxW normalized to [0,1]
+    'image1': image1  # BxCxHxW normalized to [0,1]
+})
+
+# get the matches
+mkpts0 = match_response['matches0'] # BxNx2
+mkpts1 = match_response['matches1'] # BxNx2
+```
+
+The [example.py](example.py) script shows how to automatically download and run a specific model.
+
+The following table contains links to all the models and weights we used in our experiments. 
+
+| Descriptor | Pre-trained weights | Size |
+| --- | --- | --- |
+| xfeat.zip | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/xfeat.zip) | 91.6 MB |
+| superpoint.zip | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/superpoint.zip) | 91 MB |
+| alike.zip | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/alike.zip) | 92.1 MB |
+| aliked.zip | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/aliked.zip) | 91.9 MB |
+| dedode_B.zip | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/dedode_B.zip) | 92.2 MB |
+| dedode_G.zip | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/dedode_G.zip) | 94.1 MB |
+| xfeat-12_layers-dino_G.zip | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/xfeat-12_layers-dino_G.zip) | 221 MB |
+| xfeat-12_layers.zip | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/xfeat-12_layers.zip) | 219 MB |
+| xfeat-3_layers.zip | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/xfeat-3_layers.zip) | 57.1 MB |
+| xfeat-7_layers.zip | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/xfeat-7_layers.zip) | 132 MB |
+| xfeat-9_layers.zip | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/xfeat-9_layers.zip) | 167 MB |
+| xfeat-dino-G.zip | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/xfeat-dino-G.zip) | 94.3 MB |
+| xfeat-dino_B.zip | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/xfeat-dino_B.zip) | 92.3 MB |
+| xfeat-dino_L.zip | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/xfeat-dino_L.zip) | 92.6 MB |
+
+
+
 # Training 
 
-## Data Preparation for Training
+You might want to train your own model to reason about your own descriptors. You need to take some preparations:
 
-### Scannet Data Preparation
+### 1. Scannet Data Preparation
 
 To prepare the Scannet dataset for training, follow these steps:
 
@@ -68,7 +110,7 @@ python reasoning/scripts/scannet/03_calculate_scannet_covisibility.py --data_pat
 python reasoning/scripts/scannet/04_build_h5.py --data_path datasets/scannet --output datasets/h5_scannet/
 ```
 
-### Feature Extraction
+### 2. Feature Extraction
 
 To speed up the training process, pre-extract some features from the dataset. Ours scripts read the h5 dataset and save the features to the save directory
 
@@ -100,23 +142,23 @@ datasets/
 
 For other descriptors, please check the `reasoning/scripts/export_*.py` scripts.
 
-
-## Training the Model
+### 3. Training the Model
 
 All training and experiments were conducted on a SLURM cluster with 4xV100 32GB GPUs. Adjust the batch size to match your system's capabilities.
 
 To start training, run the following command:
 ```bash
 python reasoning/train_multigpu_reasoning.py \
-    --batch_size 2 \ 
+    --batch_size 16 \ 
     --data ./datasets/h5_scannet \ # dataset folder with images and features
     --plot_every 200 \ # tensorboard matching plots
     --extractor_cache 'xfeat-scannet-n2048' \ # local features
     --dino_cache 'dino-scannet-dinov2_vits14' \ # semantic features
     -C xfeat-dinov2 # comment for tracking your exps
 ```
+If you want to skip all the multi-gpu shenanigans, you can simply add the `--local` flag.
 
 ## Acknowledgements
 This work was partially supported by grants from CAPES, CNPq, FAPEMIG, Google, ANER MOVIS from Conseil Régional BFC and ANR (ANR-23-CE23-0003-01), to whom we are grateful. This project was also provided with AI computing and storage resources by GENCI at IDRIS thanks to the grant 2024-AD011015289 on the supercomputer Jean Zay’s V100 partitions.
 
-We thank the authors of [DeDoDe](https://github.com/Parskatt/DeDoDe) for providing a template for this readme file.
+Shout out to the authors of [DeDoDe](https://github.com/Parskatt/DeDoDe) for this readme header. Its quite nice.

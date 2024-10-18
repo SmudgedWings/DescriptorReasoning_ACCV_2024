@@ -1,0 +1,53 @@
+[project]
+name = "reasoning"
+description = "Descriptor Reasoning for better matches"
+version = "0.0"
+authors = [
+    {name = "Felipe Cadar Chamone"},
+]
+readme = "README.md"
+requires-python = ">=3.6"
+license = {file = "LICENSE"}
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "torch>=1.7",
+    "torchvision>=0.8",
+    "numpy",
+    "einops",
+    "opencv-python",
+    "tqdm",
+    "matplotlib",
+    "scipy",
+    "h5py",
+    "tensorboard",
+    "kornia",
+    "seaborn",
+    "pycocotools",
+    "omegaconf",
+    "imageio",
+    "pypng",
+    "lightning",
+    "thinplate @ git+https://github.com/cheind/py-thin-plate-spline",
+    "easy-local-features==0.5.0",
+    "poselib",
+]
+# urls = {Repository = "https://github.com"}
+
+[project.optional-dependencies]
+extra = [
+    "poselib @ git+https://github.com/PoseLib/PoseLib.git@9c8f3ca1baba69e19726cc7caded574873ec1f9e",
+]
+dev = ["black", "flake8", "isort", "parameterized"]
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["reasoning*"]
+
+[tool.isort]
+profile = "black"

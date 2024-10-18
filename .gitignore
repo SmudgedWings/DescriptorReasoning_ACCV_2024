@@ -1,0 +1,5 @@
+_models/
+_datasets/
+*.egg-info/
+*.pyc
+.DS_Store
