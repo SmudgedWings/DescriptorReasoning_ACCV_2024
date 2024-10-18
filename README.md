@@ -70,13 +70,13 @@ The following table contains links to all the models and weights we used in our 
 | Descriptor | Pre-trained weights | Size |
 | --- | --- | --- |
 | xfeat | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/xfeat.zip) | 91.6 MB |
-| superpoint | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/superpoint.zip) | 91 MB |
+| superpoint | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/superpoint.zip) | 91.0 MB |
 | alike | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/alike.zip) | 92.1 MB |
 | aliked | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/aliked.zip) | 91.9 MB |
 | dedode_B | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/dedode_B.zip) | 92.2 MB |
 | dedode_G | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/dedode_G.zip) | 94.1 MB |
-| xfeat-12_layers-dino_G | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/xfeat-12_layers-dino_G.zip) | 221 MB |
-| xfeat-12_layers | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/xfeat-12_layers.zip) | 219 MB |
+| xfeat-12_layers-dino_G | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/xfeat-12_layers-dino_G.zip) | 221.0 MB |
+| xfeat-12_layers | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/xfeat-12_layers.zip) | 219.0 MB |
 | xfeat-3_layers | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/xfeat-3_layers.zip) | 57.1 MB |
 | xfeat-7_layers | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/xfeat-7_layers.zip) | 132 MB |
 | xfeat-9_layers | [Download](https://github.com/verlab/DescriptorReasoning_ACCV_2024/releases/download/weights/xfeat-9_layers.zip) | 167 MB |
