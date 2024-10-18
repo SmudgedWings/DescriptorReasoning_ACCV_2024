@@ -1,5 +1,5 @@
 <p align="center">
-  <h1 align="center"> Leveraging Semantic Cues from Foundation Vision Models <br> for Enhanced Local Feature Correspondence <br>⭐ACCV 2024⭐</h1>
+  <h1 align="center"> Leveraging Semantic Cues from Foundation Vision Models for Enhanced Local Feature Correspondence <br>⭐ACCV 2024⭐</h1>
   <p align="center">
     <a href="https://eucadar.com">Felipe Cadar</a>
     ·
