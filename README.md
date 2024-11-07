@@ -90,11 +90,7 @@ You might want to train your own model to reason about your own descriptors. You
 
 ### 1. Scannet Data Preparation
 
-The processed dataset is available for download here:
-
-```bash
-wget https://io1bgw.by.files.1drv.com/y4mNHmz8PVahDwed0b8-78UD82YVJ90U1eWPVFnIL6eTmj7cL43FkG4sEE0hm257tSLD1EPNBO1mw7ucu4pSzNq8JsSepVZanhfczlAqA5WvhUrkD9Qe17cLAEbFcROKxUsGpOwuT-dP4yzzFQw8_tNDwRKRjhwGSN0uGZgHMh8ilyv9bsmqWEWBk-dCoA6CGfc_2dzXksBjHI8mY1Kyx52Ps_bKgHWB1aCureKeWZCuJ8\?AVOverride\=1 -O h5_scannet.zip
-```
+The processed dataset is available for download here: [h5_scannet.zip](https://1drv.ms/u/s!ApoKu6UBov7DhJFqKHP_5o72YhOLtA?e=8T79oi)
 
 But if you want to follow the same steps we took to create it, take a look at the steps bellow. 
 
