@@ -1,5 +1,12 @@
 _models/
 _datasets/
+output/
 *.egg-info/
 *.pyc
 .DS_Store
+*.png
+*.pt
+*.pth
+*.npz
+*.log
+*.pid

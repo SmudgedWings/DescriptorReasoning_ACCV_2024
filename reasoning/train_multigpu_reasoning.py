@@ -372,6 +372,8 @@ def load_train_objs(args, rank):
         
         "norm_reasoning": False,
         "norm_semantic": False,
+
+        "dustbin": False
     }
     
     if args.resume:
