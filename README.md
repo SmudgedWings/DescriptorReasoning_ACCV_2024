@@ -90,6 +90,10 @@ You might want to train your own model to reason about your own descriptors. You
 
 ### 1. Scannet Data Preparation
 
+The processed dataset is available for download here: [h5_scannet.zip](https://1drv.ms/u/s!ApoKu6UBov7DhJFqKHP_5o72YhOLtA?e=8T79oi)
+
+But if you want to follow the same steps we took to create it, take a look at the steps bellow. 
+
 To prepare the Scannet dataset for training, follow these steps:
 
 1. **Download Scannet**: First, download the Scannet dataset. Make sure to read and accept the terms of use.
