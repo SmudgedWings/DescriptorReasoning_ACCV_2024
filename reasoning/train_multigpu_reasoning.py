@@ -18,7 +18,6 @@ from reasoning.datasets.utils import batch_to_device, to_cv
 from reasoning.modules.visualization import plot_matches, plot_keypoints, plot_pair
 import cv2
 from matplotlib import pyplot as plt
-# from reasoning.features.desc_reasoning import ReasoningBase
 import poselib
 from tqdm import tqdm
 
@@ -60,8 +59,6 @@ class Trainer:
         self.train_data = train_data
         self.optimizer = optimizer
         self.save_every = save_every
-        # convert batchnorm to sync batchnorm
-        # sync_model = torch.nn.SyncBatchNorm.convert_sync_batchnorm(model)
         if not args.local:
             self.raw_model = self.model = model.to(gpu_id)
             self.model = DDP(self.raw_model, device_ids=[gpu_id], gradient_as_bucket_view=True, find_unused_parameters=True)
@@ -362,16 +359,11 @@ def load_train_objs(args, rank):
         },
         "semantic_interpolation_mode": "bicubic",
         "activate_timers": False,
-        "stability": False,
         "reasoning_triplet": False,
-
-        "attention_progression": "alternating" ,#"alternating", # alternating, semantic, visual
         "attention_progression": "alternating" ,#"alternating", # alternating, semantic, visual
         "deep_supervision": True,
         "semantic_conditioning": True,
-        
-        "norm_reasoning": False,
-        "norm_semantic": False,
+        "fix_dino_size": -1,
     }
     
     if args.resume:
@@ -386,7 +378,6 @@ def load_train_objs(args, rank):
 
     print(f"[GPU{rank}] Loading optimizer")
     optimizer = torch.optim.Adam(model.parameters(), lr = args.lr, weight_decay = args.weight_decay)
-    # lr_scheduler = torch.optim.lr_scheduler.LinearLR(optimizer, 1, args.lr_final/args.lr, args.decay_epochs)
     print(f"[GPU{rank}] Optimizer loaded")
     return train_set, model, optimizer
 
@@ -466,22 +457,10 @@ if __name__ == "__main__":
     parser.add_argument("--resume", type=str, default=None, help="Resume training from a checkpoint")
 
     # reasoning arguments
-    # parser.add_argument("--loss_combination", type=str, default="softmax")
-    # parser.add_argument("--negative_supervision", type=str, default="semantic")
-    # parser.add_argument("--norm_reasoning", action="store_true", default=False)
-    # parser.add_argument("--norm_semantic", action="store_true", default=False)
-    # parser.add_argument("--semantic_conditioning", action="store_true", default=False)
-    # parser.add_argument("--dustbin", action="store_true", default=False)
-    # parser.add_argument("--extractor_attention_progression", type=str, default="alternating", choices=["alternating", "semantic", "visual"])
-    # parser.add_argument("--semantic_attention_progression", type=str, default="alternating", choices=["alternating", "semantic", "visual"])
     parser.add_argument("--dino_model", type=str, default="dinov2_vits14", help="Dino model", choices=dino_models)
-    # parser.add_argument("--simple_supervision", action="store_true", default=False)
     parser.add_argument("--dino_cache", type=str, default="dino-scannet-dinov2_vits14", help="Dino cache location")
     parser.add_argument("--extractor_cache", type=str, default="xfeat-scannet-n2048", help="Extractor cache location")
-    # parser.add_argument("--dino_size", type=int, default=-1)
-    # parser.add_argument("--extractor_size", type=int, default=-1)
     parser.add_argument("--layers", type=int, default=5)
-    
     
     # model selection
     parser.add_argument("--model", type=str, default="reasoning", choices=["reasoning", "not_a_matcher"])

@@ -153,9 +153,7 @@ class ReasoningBase(torch.nn.Module):
         "activate_timers": False,
         "attention_progression": "alternating", # alternating, semantic, visual
         "deep_supervision": True,
-        "reasoning_triplet": False,
         "semantic_conditioning": False,
-        
         "fix_dino_size": -1,
     }
     
@@ -324,14 +322,6 @@ class ReasoningBase(torch.nn.Module):
         matches1 = find_nn(sim.transpose(1, 2), None, None)
         matches0, matches1 = mutual_check(matches0, matches1)
         
-        if self.conf.dustbin:
-            # remove the ones set to the last index
-            nonMatch_idx_0 = pred['keypoints0'][0].shape[0]
-            nonMatch_idx_1 = pred['keypoints1'][0].shape[0]
-            
-            matches0[matches0 == nonMatch_idx_0] = -1
-            matches1[matches1 == nonMatch_idx_1] = -1
-        
         return_dict = {
             'matches0': [],
             'matches1': [],
@@ -343,9 +333,6 @@ class ReasoningBase(torch.nn.Module):
             keypoints1 = pred['keypoints1'][b]      
             m0 = matches0[b]  
 
-            if self.conf.dustbin:
-                m0 = m0[:-1]
-                
             valid = m0 > -1
             
             if valid.sum() == 0:
@@ -643,9 +630,6 @@ class Reasoning(torch.nn.Module):
             keypoints0 = pred['keypoints0'][b]
             keypoints1 = pred['keypoints1'][b]      
             m0 = matches0[b]  
-
-            if self.conf.dustbin:
-                m0 = m0[:-1]
                 
             valid = m0 > -1
             
