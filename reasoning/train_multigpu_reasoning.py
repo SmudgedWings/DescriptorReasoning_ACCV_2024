@@ -10,7 +10,7 @@ import os
 from reasoning.datasets.scannet import ScannetH5
 from reasoning.datasets.utils import batch_to_device
 
-from torch.utils.tensorboard import SummaryWriter
+# from torch.utils.tensorboard import SummaryWriter
 import numpy as np
 from omegaconf import OmegaConf
 
@@ -81,15 +81,19 @@ class Trainer:
         if gpu_id == 0:
             self.scalars = {}
             
-            comment = ''
+            logs_dir = ''
             if args.debug:
-                comment += '-debug'
+                logs_dir += '-debug'
 
-            if args.comment:
-                comment += f"-{args.comment}"
+            if args.logs_dir:
+                logs_dir += f"-{args.logs_dir}"
             
-            self.writer = SummaryWriter(comment=comment)
-            self.model_folder = self.writer.log_dir
+            # self.writer = SummaryWriter(comment=comment)
+            self.model_folder = self.args.logs_dir
+            os.makedirs(self.model_folder, exist_ok=False)
+            self.figures_folder = os.path.join(self.args.logs_dir, "figures")
+            os.makedirs(self.figures_folder, exist_ok=True)
+            self.log_file = os.path.join(self.args.logs_dir, "logs.txt")
             
             with open(f"{self.model_folder}/model_config.yaml", "w") as f:
                 OmegaConf.save(self.raw_model.conf, f)
@@ -139,7 +143,8 @@ class Trainer:
 
             plt.tight_layout()
             try:
-                self.writer.add_figure(f"_matches_{b_index}/Reasoning", f, self.global_iter)
+                figure_path = os.path.join(self.figures_folder, f"_matches_{b_index}_Reasoning_{self.global_iter}.png")
+                f.savefig(figure_path)  
                 plt.close('all')
             except:
                 print("Error adding figure")
@@ -160,13 +165,19 @@ class Trainer:
             raise ValueError(f"Unknown scalar type {type(scalar)}")
 
     def log_all(self):
+        log_data = []
         for name, scalar in self.scalars.items():
             scalar = [s for s in scalar if s is not None]
             if len(scalar) > 0:
-                self.writer.add_scalar(name, np.nanmean(scalar), self.global_iter)
+                log_data.append(f"{name}: {np.nanmean(scalar)}")
+                # self.writer.add_scalar(name, np.nanmean(scalar), self.global_iter)
         self.scalars = {}
-        self.writer.add_scalar("0_train/epoch", self.global_epoch, self.global_iter)
-        self.writer.flush()    
+        log_data.append(f"0_train/epoch: {self.global_epoch} at iter {self.global_iter}")
+        # self.writer.add_scalar("0_train/epoch", self.global_epoch, self.global_iter)
+        # self.writer.flush()   
+        with open(self.log_file, "a") as log_file:
+            for log_message in log_data:
+                log_file.write(log_message + "\n") 
 
     def _run_batch(self, data):
         data = batch_to_device(data, self.gpu_id)
@@ -451,7 +462,8 @@ if __name__ == "__main__":
     parser.add_argument('--log_every', default=10, type=int, help='Log every N steps')
     parser.add_argument('--plot_every', default=100, type=int, help='Log every N steps')
     parser.add_argument('--save_every', type=int, help='How often to save a snapshot', default=1_000)
-    parser.add_argument('--comment', '-C', type=str, help='Comment for Tensorboard', default="")
+    # parser.add_argument('--comment', '-C', type=str, help='Comment for Tensorboard', default="")
+    parser.add_argument('--logs_dir', type=str, help='Path for logs', default="./exps")
 
     # dataset arguments
     parser.add_argument('--data', default='h5_scannet', type=str, help='Dataset location')

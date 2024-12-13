@@ -1,6 +1,7 @@
 _models/
 _datasets/
 output/
+exps/
 *.egg-info/
 *.pyc
 .DS_Store

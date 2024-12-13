@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# export CUDA_VISIBLE_DEVICES=0
+export CUDA_VISIBLE_DEVICES=0
 task_name=reason  
 
 find_unused_port() {
@@ -23,7 +23,8 @@ python reasoning/train_multigpu_reasoning.py \
     --plot_every 200 \
     --extractor_cache 'xfeat-scannet-n2048' \
     --dino_cache 'dino-scannet-dinov2_vits14' \
-    -C xfeat-dinov2 \
+    --logs_dir ./exps/${task_name}_$(date +'%Y-%m-%d_%H-%M-%S')
+    # -C xfeat-dinov2 \
 # > ./scripts/${task_name}.log 2>&1 &
 
 # sleep 10

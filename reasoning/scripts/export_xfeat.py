@@ -9,7 +9,7 @@ import argparse
 def parse():
     parser = argparse.ArgumentParser()
     parser.add_argument("--data",  "-d", type=str, default="./datasets/h5_scannet/", help="Path to the dataset")
-    parser.add_argument("--batch_size", "-b", type=int, default=32, help="Batch size")
+    parser.add_argument("--batch_size", "-b", type=int, default=4, help="Batch size")
     parser.add_argument("--num_keypoints", "-k", type=int, default=2048, help="Number of keypoints to extract")
     return parser.parse_args()
 

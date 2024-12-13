@@ -6,7 +6,8 @@ from reasoning.datasets.scannet import ScannetSingleH5
 from tqdm import tqdm
 import argparse
 from reasoning.features.dinov2 import DinoV2
-
+# import os
+# os.environ["TORCH_HOME"] = "/data/zhangbilang/DescriptorReasoning/models"
 possible_models = [
     'dinov2_vits14',
     'dinov2_vitb14',
@@ -16,8 +17,8 @@ possible_models = [
 
 def parse():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--dataset",  "-d", type=str, default="./h5_scannet/", help="Path to the dataset")
-    parser.add_argument("--batch_size", "-b", type=int, default=16, help="Batch size")
+    parser.add_argument("--dataset",  "-d", type=str, default="./datasets/h5_scannet/", help="Path to the dataset")
+    parser.add_argument("--batch_size", "-b", type=int, default=4, help="Batch size")
     parser.add_argument("--dino_model", type=str, default="dinov2_vits14", help="Dino model", choices=possible_models)
     return parser.parse_args()
 

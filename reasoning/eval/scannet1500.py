@@ -69,3 +69,6 @@ if __name__ == "__main__":
     print('------------------')
     print('Result')
     print_fancy(result)
+
+
+# python reasoning/eval/scannet1500.py --scannet_path ../datasets/scannet_test_1500 --weights /models/xfeat
